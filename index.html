@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>林子鈞 Jerry Lin｜PM × Data × AI 作品集</title>
+<meta name="description" content="林子鈞 Jerry Lin — 專案管理師（PMP）。6 年 AI、大數據與 GIS 專案經驗，擅長橋接業務與技術，讓數據驅動決策。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7fafd;
+    --surface:#ffffff;
+    --ink:#0f1f2e;
+    --muted:#5b6b7c;
+    --line:#e3ecf3;
+    --accent:#0e9aa7;
+    --accent-2:#2f80ed;
+    --accent-soft:#e6f7f8;
+    --accent-2-soft:#eaf2fe;
+    --amber:#f2a541;
+    --r:24px;
+    --gap:16px;
+    --shadow:0 10px 40px rgba(15,50,80,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Noto Sans TC','Outfit',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;overflow-x:hidden}
+  ::selection{background:var(--accent);color:#fff}
+  .en{font-family:'Outfit','Noto Sans TC',sans-serif}
+  img{display:block;max-width:100%}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:100%;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    transform-origin:0 50%;transform:scaleX(0);z-index:200}
+
+  nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);
+    display:flex;align-items:center;gap:4px;padding:8px 10px;
+    background:rgba(255,255,255,.82);backdrop-filter:blur(14px);
+    border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow);z-index:100;
+    max-width:calc(100vw - 24px)}
+  nav .logo{font-weight:900;padding:4px 14px;font-size:15px;letter-spacing:.5px;white-space:nowrap}
+  nav .logo span{color:var(--accent)}
+  nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;
+    padding:6px 13px;border-radius:999px;transition:.25s;white-space:nowrap}
+  nav a:hover{color:var(--accent);background:var(--accent-soft)}
+  nav a.cta{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-weight:700}
+  nav a.cta:hover{opacity:.9}
+  @media(max-width:720px){nav a:not(.cta){display:none}}
+
+  .blob{position:fixed;border-radius:50%;filter:blur(80px);opacity:.45;pointer-events:none;z-index:-1}
+  .b1{width:460px;height:460px;background:#c9f0f2;top:-140px;right:-120px}
+  .b2{width:380px;height:380px;background:#d8e8fd;top:40%;left:-170px}
+  .b3{width:300px;height:300px;background:#fdeed3;bottom:-100px;right:12%}
+
+  section{position:relative;max-width:1120px;margin:0 auto;padding:96px 24px 20px}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;
+    letter-spacing:2.5px;color:var(--accent);text-transform:uppercase;margin-bottom:12px}
+  .kicker::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block}
+  h2{font-size:clamp(26px,4vw,38px);font-weight:900;margin-bottom:8px;letter-spacing:.5px}
+  .sub{color:var(--muted);max-width:640px;margin-bottom:36px}
+
+  /* ================= bento core ================= */
+  .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap)}
+  .tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+    padding:28px;box-shadow:0 4px 18px rgba(15,50,80,.05);position:relative;overflow:hidden;
+    transition:transform .35s cubic-bezier(.2,.7,.3,1),border-color .35s,box-shadow .35s}
+  .tile:hover{transform:translateY(-4px);border-color:#cfe6ea;box-shadow:0 16px 38px rgba(14,154,167,.12)}
+  @media(max-width:860px){.bento > *{grid-column:1 / -1 !important}}
+
+  /* ================= hero ================= */
+  .hero-sec{padding-top:110px;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
+  .t-intro{grid-column:1/9;grid-row:1/3;padding:44px 42px;display:flex;flex-direction:column;justify-content:center;
+    background:linear-gradient(145deg,#ffffff 55%,#eefafb)}
+  .t-intro h1{font-size:clamp(36px,5.6vw,60px);font-weight:900;line-height:1.18;letter-spacing:1px}
+  .t-intro h1 .grad{background:linear-gradient(120deg,var(--accent) 10%,var(--accent-2) 90%);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero-role{font-size:clamp(16px,2.2vw,20px);font-weight:700;margin-top:14px}
+  .hero-role em{font-style:normal;color:var(--accent)}
+  .hero-desc{color:var(--muted);max-width:520px;margin-top:12px;font-size:15.5px}
+  .hero-cta{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:15px;
+    padding:12px 26px;border-radius:14px;transition:.3s;will-change:transform}
+  .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;
+    box-shadow:0 10px 26px rgba(14,154,167,.35)}
+  .btn-primary:hover{transform:translateY(-3px)}
+  .btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .btn-ghost:hover{transform:translateY(-3px);border-color:var(--accent);color:var(--accent)}
+
+  .t-status{grid-column:9/13;display:flex;flex-direction:column;gap:10px;justify-content:center}
+  .status-row{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--muted)}
+  .status-row .dot{width:9px;height:9px;border-radius:50%;background:#2ecc71;box-shadow:0 0 0 4px rgba(46,204,113,.16);flex:none}
+  .status-row b{color:var(--ink)}
+
+  .t-stat{display:flex;flex-direction:column;justify-content:center;padding:22px 24px}
+  .s1{grid-column:9/11}.s2{grid-column:11/13}
+  .s3{grid-column:7/10}.s4{grid-column:10/13}
+  .t-stat .num{font-family:'Outfit';font-size:clamp(26px,3.4vw,36px);font-weight:800;color:var(--accent);line-height:1.1}
+  .t-stat .num small{font-size:.55em;font-weight:800;margin-left:2px}
+  .t-stat .lbl{font-size:13px;color:var(--muted);font-weight:500;margin-top:4px;line-height:1.5}
+
+  .t-badges{grid-column:1/7;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:22px 26px}
+  .badge{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:7px 14px;
+    font-size:13px;font-weight:700}
+  .badge span{color:var(--accent);margin-right:6px}
+
+  .scroll-hint{text-align:center;color:var(--muted);font-size:11.5px;letter-spacing:2.5px;margin-top:34px}
+
+  /* ================= about ================= */
+  .t-about{grid-column:1/8}
+  .t-about p{color:var(--muted);margin-bottom:12px;font-size:15px}
+  .t-about p strong{color:var(--ink)}
+  .t-edu{grid-column:8/13;display:flex;flex-direction:column;justify-content:center;gap:16px;
+    background:linear-gradient(160deg,#ffffff 50%,var(--accent-2-soft))}
+  .edu-item .deg{font-weight:900;font-size:15.5px}
+  .edu-item .sch{font-size:13.5px;color:var(--muted)}
+  .edu-item .yr{font-size:12px;color:var(--accent);font-weight:700;letter-spacing:1px}
+  .t-cap{grid-column:span 3;padding:24px}
+  .t-cap .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+    background:var(--accent-soft);font-size:20px;margin-bottom:12px}
+  .t-cap h4{font-size:15.5px;margin-bottom:4px}
+  .t-cap p{font-size:12.5px;color:var(--muted);line-height:1.6}
+  .t-skills{grid-column:1/13;padding:28px 30px}
+  .t-skills h3{font-size:16px;margin-bottom:14px}
+  .chip-group{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+  .chip-group .cat{font-size:12px;font-weight:800;color:var(--accent);letter-spacing:1px;min-width:86px}
+  .chip{font-size:12.5px;font-weight:600;background:var(--bg);border:1px solid var(--line);
+    border-radius:999px;padding:4px 13px;transition:.25s;cursor:default}
+  .chip:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);background:var(--accent-soft)}
+
+  /* ================= impact ================= */
+  .t-chart{padding:26px;display:flex;flex-direction:column}
+  .t-bar{grid-column:1/8}.t-radar{grid-column:8/13}
+  .t-chart h3{font-size:16.5px;margin-bottom:2px}
+  .t-chart .note{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+  .chart-wrap{position:relative;flex:1;min-height:290px}
+
+  /* ================= projects ================= */
+  .proj-bento{margin-bottom:26px}
+  .p-info{grid-column:1/6;display:flex;flex-direction:column;padding:32px}
+  .p-media{grid-column:6/13;padding:14px;display:flex;flex-direction:column;gap:10px}
+  .proj-bento.flip .p-info{grid-column:8/13;order:2}
+  .proj-bento.flip .p-media{grid-column:1/8;order:1}
+  @media(max-width:860px){.proj-bento .p-info,.proj-bento .p-media{order:0}}
+  .p-info .idx{font-family:'Outfit';font-size:15px;font-weight:800;color:var(--accent);letter-spacing:2px}
+  .p-info h3{font-size:clamp(19px,2.4vw,23px);font-weight:900;margin:6px 0 2px}
+  .p-info .en-sub{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:14px;display:block}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+  .tag{font-size:11.5px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:3px 11px;border-radius:999px}
+  .tag.alt{color:var(--accent-2);background:var(--accent-2-soft)}
+  .p-info p.desc{color:var(--muted);font-size:14px;margin-bottom:16px}
+  .hl-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+  .hl{flex:1;min-width:110px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:10px 14px}
+  .hl .v{font-family:'Outfit';font-weight:800;font-size:19px;color:var(--accent);white-space:nowrap}
+  .hl .k{font-size:11.5px;color:var(--muted);line-height:1.45}
+  .main-shot{position:relative;border-radius:16px;overflow:hidden;background:#0d1b26;cursor:zoom-in;flex:1;min-height:280px}
+  .main-shot img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+  .main-shot:hover img{transform:scale(1.035)}
+  .main-shot .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 16px 10px;
+    background:linear-gradient(transparent,rgba(10,25,35,.78));color:#fff;font-size:12.5px;font-weight:600;z-index:1}
+  .thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+  .thumbs button{border:2px solid transparent;border-radius:10px;overflow:hidden;cursor:pointer;
+    padding:0;background:none;aspect-ratio:16/10;opacity:.75;transition:.25s}
+  .thumbs button img{width:100%;height:100%;object-fit:cover}
+  .thumbs button:hover{opacity:1;transform:translateY(-2px)}
+  .thumbs button.on{border-color:var(--accent);opacity:1}
+  .privacy-note{font-size:11.5px;color:var(--muted)}
+
+  /* ================= experience ================= */
+  .t-tl{grid-column:1/13;padding:36px 38px}
+  .tl{position:relative;margin-left:6px;padding-left:32px}
+  .tl::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:3px;border-radius:3px;background:var(--line)}
+  .tl .tl-fill{position:absolute;left:0;top:6px;width:3px;border-radius:3px;height:calc(100% - 12px);
+    background:linear-gradient(180deg,var(--accent),var(--accent-2));transform-origin:top;transform:scaleY(0)}
+  .job{position:relative;padding-bottom:34px}
+  .job:last-child{padding-bottom:0}
+  .job::before{content:"";position:absolute;left:-39px;top:8px;width:12px;height:12px;border-radius:50%;
+    background:#fff;border:3.5px solid var(--accent);box-shadow:0 0 0 5px var(--accent-soft)}
+  .job .when{font-size:12.5px;font-weight:700;color:var(--accent);letter-spacing:1px}
+  .job h4{font-size:17.5px;font-weight:900;margin:2px 0}
+  .job .co{font-size:13.5px;color:var(--muted);margin-bottom:8px}
+  .job ul{list-style:none}
+  .job li{color:var(--muted);font-size:14px;padding-left:17px;position:relative;margin-bottom:5px}
+  .job li::before{content:"▸";position:absolute;left:0;color:var(--accent)}
+  .job li strong{color:var(--ink)}
+
+  /* ================= certs ================= */
+  .t-cert{grid-column:span 3;text-align:center;padding:26px 18px}
+  .t-cert .em{font-size:28px;margin-bottom:8px}
+  .t-cert h4{font-size:14.5px;margin-bottom:2px}
+  .t-cert p{font-size:12px;color:var(--muted);line-height:1.6}
+  .t-cert:hover{border-color:var(--amber)}
+
+  /* ================= contact ================= */
+  .contact-card{background:linear-gradient(135deg,#0d3b4f,#0e6a80 55%,#1173a8);border-radius:28px;
+    padding:60px 36px;text-align:center;color:#fff;position:relative;overflow:hidden;box-shadow:0 24px 60px rgba(13,59,79,.35)}
+  .contact-card::before,.contact-card::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.07)}
+  .contact-card::before{width:340px;height:340px;top:-160px;right:-100px}
+  .contact-card::after{width:260px;height:260px;bottom:-130px;left:-80px}
+  .contact-card h2{color:#fff}
+  .contact-card p{color:rgba(255,255,255,.75);max-width:520px;margin:8px auto 28px}
+  .contact-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+  .btn-white{background:#fff;color:#0d3b4f}
+  .btn-white:hover{transform:translateY(-3px)}
+  .btn-line{border:1.5px solid rgba(255,255,255,.5);color:#fff}
+  .btn-line:hover{transform:translateY(-3px);border-color:#fff}
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:44px 20px 36px}
+
+  /* ================= lightbox ================= */
+  #lb{position:fixed;inset:0;background:rgba(8,20,28,.9);z-index:300;display:none;
+    align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:4vh 4vw;cursor:zoom-out}
+  #lb img{max-width:92vw;max-height:84vh;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  #lb .lb-cap{color:#cfe3ea;font-size:13.5px;font-weight:600}
+
+  .reveal{opacity:0}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1}
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div class="blob b1" data-depth="30"></div>
+<div class="blob b2" data-depth="50"></div>
+<div class="blob b3" data-depth="20"></div>
+
+<nav>
+  <div class="logo en">JERRY<span>.</span>LIN</div>
+  <a href="#about">關於我</a>
+  <a href="#impact">量化成果</a>
+  <a href="#projects">精選專案</a>
+  <a href="#experience">經歷</a>
+  <a href="#contact" class="cta">聯絡我</a>
+</nav>
+
+<!-- ================= HERO (bento) ================= -->
+<section class="hero-sec" id="top">
+  <div class="bento">
+    <div class="tile t-intro reveal">
+      <h1>嗨，我是<br><span class="grad">林子鈞 <span class="en">Jerry Lin</span></span></h1>
+      <div class="hero-role">專案管理師 <em>PjM</em>｜商業分析 <em>BA</em>｜<em>AI × Big Data × GIS</em></div>
+      <p class="hero-desc">
+        具備 <strong>PMP</strong> 認證與 6 年跨 AI、大數據、GIS 的專案管理經驗。
+        擅長橋接業務與技術團隊，從需求訪談到系統落地的全生命週期管理，
+        為組織創造<strong>數據驅動的決策價值</strong>。
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#projects">看看我的專案 ↓</a>
+        <a class="btn btn-ghost" href="#contact">與我聯繫</a>
+      </div>
+    </div>
+    <div class="tile t-status reveal">
+      <div class="status-row"><span class="dot"></span><span class="en" style="font-weight:800">OPEN TO WORK</span></div>
+      <div class="status-row">🎯 <span><b>PM／BA</b>・科技業</span></div>
+      <div class="status-row">📍 <span>台北市・新北市</span></div>
+      <div class="status-row">✉️ <span class="en">jerrylin0202@gmail.com</span></div>
+    </div>
+    <div class="tile t-stat s1 reveal"><div class="num"><span class="count" data-to="6">0</span><small>+</small></div><div class="lbl">年專案經驗<br>PM × SA × DA</div></div>
+    <div class="tile t-stat s2 reveal"><div class="num"><span class="count" data-to="10">0</span><small>+</small></div><div class="lbl">AI 應用專案<br>災防・監測・LLM</div></div>
+    <div class="tile t-badges reveal">
+      <div class="badge"><span>◆</span>PMP 國際專案管理師</div>
+      <div class="badge"><span>◆</span>TOEIC 850</div>
+      <div class="badge"><span>◆</span>發明專利：地理空間資料處理系統及方法</div>
+    </div>
+    <div class="tile t-stat s3 reveal"><div class="num"><span class="count" data-to="5">0</span><small>億</small></div><div class="lbl">促成後續預算編列（消防數據倉儲專案）</div></div>
+    <div class="tile t-stat s4 reveal"><div class="num"><span class="count" data-to="20">0</span><small>+</small></div><div class="lbl">跨機關資料集整合（AI 視覺化平台）</div></div>
+  </div>
+  <div class="scroll-hint en">— SCROLL —</div>
+</section>
+
+<!-- ================= ABOUT (bento) ================= -->
+<section id="about">
+  <div class="kicker en reveal">About Me</div>
+  <h2 class="reveal">把複雜的技術，變成能落地的決策</h2>
+  <p class="sub reveal">從地理資訊出身，走進大數據與 AI 的世界——好的專案管理，是讓對的技術在對的場景發揮價值。</p>
+  <div class="bento">
+    <div class="tile t-about reveal">
+      <p>我是林子鈞，現任<strong>資拓宏宇國際 專案管理師</strong>，工作範疇橫跨 PM、SA、DA。
+      曾主責<strong>消防大數據平台</strong>，整合 20+ 跨機關資料集並促成 <strong>5 億元</strong>後續預算編列；
+      也曾以 Python/VBA 自動化工具為公司<strong>節省 80% 人力成本</strong>。</p>
+      <p>近年持續將<strong>生成式 AI 與 Agent 工具</strong>導入專案工作流——從 RAG、Text-to-SQL 到
+      Prompt Engineering，用於資料治理、簡報與系統雛形產製，讓交付速度與品質同步提升。</p>
+    </div>
+    <div class="tile t-edu reveal">
+      <div class="edu-item">
+        <div class="yr en">2018 – 2020</div>
+        <div class="deg">地理環境資源學系 碩士</div>
+        <div class="sch">國立臺灣大學・論文以深度學習預測捷運運量，獲北市府研究報告甲等獎</div>
+      </div>
+      <div class="edu-item">
+        <div class="yr en">2014 – 2018</div>
+        <div class="deg">地理學系 學士</div>
+        <div class="sch">國立彰化師範大學</div>
+      </div>
+    </div>
+    <div class="tile t-cap reveal"><div class="ic">📋</div><h4>專案管理</h4><p>PMP 認證，10+ AI 與大數據專案，混合式（敏捷＋瀑布）管理</p></div>
+    <div class="tile t-cap reveal"><div class="ic">🤖</div><h4>AI 應用</h4><p>RAG、Text-to-SQL、Agent 工作流、知識庫建置、時間序列模型</p></div>
+    <div class="tile t-cap reveal"><div class="ic">📊</div><h4>數據分析</h4><p>Python、SQL、Tableau、Power BI，從資料清理到視覺化敘事</p></div>
+    <div class="tile t-cap reveal"><div class="ic">🗺️</div><h4>GIS 開發</h4><p>WebGIS／3D GIS 導入，空間分析設計，Geo AI 與發明專利</p></div>
+    <div class="tile t-skills reveal">
+      <h3>技能清單 <span class="en" style="color:var(--muted);font-size:12px;font-weight:600">SKILLS</span></h3>
+      <div class="chip-group"><span class="cat">AI / LLM</span><span class="chip">RAG</span><span class="chip">Text-to-SQL</span><span class="chip">Prompt Engineering</span><span class="chip">Embedding</span><span class="chip">AI Agent 設計</span><span class="chip">SAS RAM</span></div>
+      <div class="chip-group"><span class="cat">數據分析</span><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">PostgreSQL</span><span class="chip">LightGBM</span><span class="chip">時間序列</span><span class="chip">Excel VBA</span></div>
+      <div class="chip-group"><span class="cat">視覺化</span><span class="chip">Tableau</span><span class="chip">Power BI</span><span class="chip">Figma</span></div>
+      <div class="chip-group"><span class="cat">GIS</span><span class="chip">ArcGIS</span><span class="chip">QGIS</span><span class="chip">WebGIS / 3D GIS</span><span class="chip">空間分析</span><span class="chip">遙測影像</span></div>
+      <div class="chip-group"><span class="cat">管理</span><span class="chip">PMP</span><span class="chip">敏捷 / 混合式開發</span><span class="chip">需求訪談</span><span class="chip">ISO 27001 稽核配合</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= IMPACT ================= -->
+<section id="impact">
+  <div class="kicker en reveal">Impact by Numbers</div>
+  <h2 class="reveal">量化成果</h2>
+  <p class="sub reveal">每一個百分比背後，都是流程再造與技術導入的實際效益。</p>
+  <div class="bento">
+    <div class="tile t-chart t-bar reveal">
+      <h3>效率提升與品質成果</h3>
+      <div class="note">各專案關鍵改善幅度（%）</div>
+      <div class="chart-wrap"><canvas id="barChart" role="img" aria-label="效率提升長條圖"></canvas></div>
+    </div>
+    <div class="tile t-chart t-radar reveal">
+      <h3>核心能力雷達</h3>
+      <div class="note">跨 PM／SA／DA 複合職能（自評 1–10）</div>
+      <div class="chart-wrap"><canvas id="radarChart" role="img" aria-label="核心能力雷達圖"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="kicker en reveal">Featured Projects</div>
+  <h2 class="reveal">精選專案</h2>
+  <p class="sub reveal">三個代表作，涵蓋大數據平台、3D GIS 與生成式 AI 落地。點縮圖切換、點大圖放大檢視。</p>
+
+  <div class="bento proj-bento">
+    <div class="tile p-info reveal">
+      <div class="idx en">PROJECT 01</div>
+      <h3>消防與防救災大數據分析平台</h3>
+      <span class="en-sub">Fire &amp; Disaster Prevention Big Data Platform</span>
+      <div class="tags">
+        <span class="tag">資料倉儲</span><span class="tag">AI 災害預測</span><span class="tag">Transformer</span>
+        <span class="tag alt">Tableau</span><span class="tag alt">跨機關整合</span>
+      </div>
+      <p class="desc">
+        主責消防署數據倉儲專案，整合 119 派遣、EMIC、火災預防等 <strong>20+ 跨機關資料集</strong>，
+        建置 AI 視覺化平台。導入 Transformer（SimVP、PatchTST）與 LLM，落地災情風險預測與
+        救災自動化文稿產製，以未送醫救護、救護反應效率等實務議題支撐循證決策。
+      </p>
+      <div class="hl-row">
+        <div class="hl"><div class="v">5 億元</div><div class="k">促成後續預算編列</div></div>
+        <div class="hl"><div class="v">90%</div><div class="k">AI 模型預測精度</div></div>
+        <div class="hl"><div class="v">20+</div><div class="k">跨機關資料集</div></div>
+      </div>
+    </div>
+    <div class="tile p-media reveal" data-gallery>
+      <div class="main-shot">
+        <img src="assets/a.jpg" alt="消防與防救災數據平台入口">
+        <div class="cap">平台服務入口</div>
+      </div>
+      <div class="thumbs">
+        <button class="on" data-src="assets/a.jpg" data-cap="平台服務入口"><img src="assets/a.jpg" alt=""></button>
+        <button data-src="assets/b.jpg" data-cap="防救災統計儀表板"><img src="assets/b.jpg" alt=""></button>
+        <button data-src="assets/c.jpg" data-cap="火災風險地圖"><img src="assets/c.jpg" alt=""></button>
+        <button data-src="assets/d.jpg" data-cap="分隊最短車程分析"><img src="assets/d.jpg" alt=""></button>
+        <button data-src="assets/e.jpg" data-cap="全臺案件點位分布"><img src="assets/e.jpg" alt=""></button>
+        <button data-src="assets/f.jpg" data-cap="救護服務空白區分析"><img src="assets/f.jpg" alt=""></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="bento proj-bento flip">
+    <div class="tile p-info reveal">
+      <div class="idx en">PROJECT 02</div>
+      <h3>山域搜救 3D GIS 決策平台</h3>
+      <span class="en-sub">Mountain SAR 3D GIS Platform</span>
+      <div class="tags">
+        <span class="tag">3D GIS</span><span class="tag">開源圖台</span><span class="tag">數位孿生</span>
+        <span class="tag alt">敏捷開發</span><span class="tag alt">MVP</span>
+      </div>
+      <p class="desc">
+        以開源 GIS 技術於評選中勝出（vs. ArcGIS 等商用方案），建置山域搜救 3D 決策圖台：
+        <strong>IPP 搜救機率環、視域分析、紅色地圖地形判釋、無人機影像 3D 建模</strong>。
+        混合式專案管理快速交付 MVP，並向全臺山搜人員舉辦教育訓練與實戰演練。
+      </p>
+      <div class="hl-row">
+        <div class="hl"><div class="v">-70%</div><div class="k">專案交付時間</div></div>
+        <div class="hl"><div class="v">4 項</div><div class="k">核心空間分析落地</div></div>
+        <div class="hl"><div class="v">全臺</div><div class="k">山搜講座與教育訓練</div></div>
+      </div>
+    </div>
+    <div class="tile p-media reveal" data-gallery>
+      <div class="main-shot">
+        <img src="assets/g.jpg" alt="IPP 搜救機率環 3D 分析">
+        <div class="cap">IPP 初始點搜救機率環（3D）</div>
+      </div>
+      <div class="thumbs">
+        <button class="on" data-src="assets/g.jpg" data-cap="IPP 初始點搜救機率環（3D）"><img src="assets/g.jpg" alt=""></button>
+        <button data-src="assets/h.jpg" data-cap="3D 地形全景與案件點位"><img src="assets/h.jpg" alt=""></button>
+        <button data-src="assets/i.jpg" data-cap="紅色地圖地形判釋"><img src="assets/i.jpg" alt=""></button>
+        <button data-src="assets/j.jpg" data-cap="視域分析"><img src="assets/j.jpg" alt=""></button>
+        <button data-src="assets/k.jpg" data-cap="步道搜救機率環"><img src="assets/k.jpg" alt=""></button>
+        <button data-src="assets/l.jpg" data-cap="3D 圖台環域分析"><img src="assets/l.jpg" alt=""></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="bento proj-bento">
+    <div class="tile p-info reveal">
+      <div class="idx en">PROJECT 03</div>
+      <h3>政府機關資料治理 AI Agent</h3>
+      <span class="en-sub">Data Governance AI Agent (POC)</span>
+      <div class="tags">
+        <span class="tag">SAS RAM</span><span class="tag">RAG</span><span class="tag">Text-to-SQL</span>
+        <span class="tag alt">Prompt Engineering</span><span class="tag alt">Figma 雛形</span>
+      </div>
+      <p class="desc">
+        運用 SAS Retrieval Agent Manager（RAM）平台，結合 <strong>RAG 與 Text-to-SQL</strong>
+        建置專家型 AI Agent：決策者以自然語言提問，Agent 即時查詢庫存結構化資料、
+        比對應裝／實儲／控存缺口並產出決策建議。同步以 AI＋Figma 快速產製系統雛形與模擬資料。
+      </p>
+      <div class="hl-row">
+        <div class="hl"><div class="v">NL→SQL</div><div class="k">自然語言直查資料庫</div></div>
+        <div class="hl"><div class="v">RAG</div><div class="k">知識庫檢索，回答有憑據</div></div>
+        <div class="hl"><div class="v">POC</div><div class="k">高層決策場景驗證</div></div>
+      </div>
+    </div>
+    <div class="tile p-media reveal" data-gallery>
+      <div class="main-shot">
+        <img src="assets/sas_agent.jpg" alt="SAS RAM AI Agent 對話畫面">
+        <div class="cap">AI Agent 三方比對分析回覆（模擬資料）</div>
+      </div>
+      <div class="privacy-note">＊畫面已去識別化，並使用模擬資料展示。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section id="experience">
+  <div class="kicker en reveal">Experience</div>
+  <h2 class="reveal">工作經歷</h2>
+  <p class="sub reveal">5–6 年，從 GIS 分析走向 AI 專案管理。</p>
+  <div class="bento">
+    <div class="tile t-tl reveal">
+      <div class="tl">
+        <div class="tl-fill"></div>
+        <div class="job">
+          <div class="when">2025/12 — 現在</div>
+          <h4>專案管理師（PjM / SA）</h4>
+          <div class="co">資拓宏宇國際股份有限公司・新北板橋</div>
+          <ul>
+            <li>建置 <strong>AI Agent（RAG + Text-to-SQL）</strong>協助政府機關資料治理</li>
+            <li>主責內政部地址編碼、大數據分析平台專案：需求訪談、功能規劃與專案執行</li>
+            <li>負責大型電力數據平台系統分析，協助精準資源配置與商務評估</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="when">2022/5 — 2025/12</div>
+          <h4>產品分析師（軟體專案管理師）</h4>
+          <div class="co">興創知能股份有限公司・台北松山</div>
+          <ul>
+            <li>執行 <strong>10+ 項 AI 應用專案</strong>：環境監測、災害預測、大語言模型</li>
+            <li>主責消防數據倉儲，促成 <strong>5 億元</strong>後續預算；山搜圖台 MVP <strong>交付時間 -70%</strong></li>
+            <li>主導 TRONCube 資料倉儲產品規劃，<strong>模型建置時間 -80%</strong>、精度達 90%</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="when">2020/9 — 2022/4</div>
+          <h4>GIS 分析師（數據分析師）</h4>
+          <div class="co">大有國際資產評價股份有限公司・高雄前金</div>
+          <ul>
+            <li>Python/VBA 自動化爬蟲與空間對位工具，<strong>節省 80% 人力成本</strong></li>
+            <li>主責社子島區段徵收案：整合 5,500 筆土地、逾萬名所有權人異質資料</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="when">2019/1 — 2019/12</div>
+          <h4>研究助理</h4>
+          <div class="co">中央研究院數位文化中心・台北南港</div>
+          <ul>
+            <li>以 GIS 與鏈結開放資料（Linked Open Data）語意標準整合農村調查資料</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CERTS ================= -->
+<section id="certs">
+  <div class="kicker en reveal">Credentials</div>
+  <h2 class="reveal">認證與榮譽</h2>
+  <p class="sub reveal">專業能力的第三方背書。</p>
+  <div class="bento">
+    <div class="tile t-cert reveal"><div class="em">🏅</div><h4>PMP 國際專案管理師</h4><p>PMI 國際專案管理學會</p></div>
+    <div class="tile t-cert reveal"><div class="em">🗣️</div><h4>TOEIC 850</h4><p>ETS 多益測驗<br>聽說讀寫精通</p></div>
+    <div class="tile t-cert reveal"><div class="em">💡</div><h4>發明專利</h4><p>地理空間資料處理系統及方法<br>發明第 925616 號</p></div>
+    <div class="tile t-cert reveal"><div class="em">🏆</div><h4>北市府研究報告甲等獎</h4><p>深度學習預測臺北捷運運量<br>臺大地理碩士論文</p></div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="contact-card reveal">
+    <div class="kicker en" style="color:#7fd6de">Get in Touch</div>
+    <h2>找一位能橋接業務與技術的 PM？</h2>
+    <p>歡迎聊聊專案管理、數據分析或 AI 落地的合作機會。</p>
+    <div class="contact-cta">
+      <a class="btn btn-white" href="mailto:jerrylin0202@gmail.com">✉️ jerrylin0202@gmail.com</a>
+      <a class="btn btn-line" href="https://www.linkedin.com/" target="_blank" rel="noopener">in&nbsp; LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Jerry Lin（林子鈞）・Designed with GSAP &amp; Chart.js</footer>
+
+<div id="lb"><img src="" alt=""><div class="lb-cap"></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+(function () {
+/* fallback：若 CDN 載入失敗，確保內容仍可見 */
+if (!window.gsap || !window.ScrollTrigger) {
+  document.querySelectorAll('.reveal').forEach(function (e) { e.style.opacity = 1; });
+  return;
+}
+gsap.registerPlugin(ScrollTrigger);
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- scroll progress ---------- */
+gsap.to('#progress', {
+  scaleX: 1, ease: 'none',
+  scrollTrigger: { start: 0, end: 'max', scrub: .3 }
+});
+
+/* ---------- blobs ---------- */
+if (!reduced) {
+  gsap.utils.toArray('.blob').forEach((b, i) => {
+    gsap.to(b, { y: i % 2 ? 40 : -40, x: i % 2 ? -20 : 25, duration: 6 + i * 2,
+      yoyo: true, repeat: -1, ease: 'sine.inOut' });
+  });
+  addEventListener('mousemove', e => {
+    const cx = (e.clientX / innerWidth - .5), cy = (e.clientY / innerHeight - .5);
+    document.querySelectorAll('.blob').forEach(b => {
+      const d = +b.dataset.depth || 25;
+      gsap.to(b, { xPercent: cx * d, yPercent: cy * d, duration: 1.4, ease: 'power2.out', overwrite: 'auto' });
+    });
+  });
+}
+
+/* ---------- number counters ---------- */
+document.querySelectorAll('.count').forEach(el => {
+  const to = +el.dataset.to;
+  ScrollTrigger.create({
+    trigger: el, start: 'top 92%', once: true,
+    onEnter: () => gsap.fromTo(el, { textContent: 0 }, {
+      textContent: to, duration: 1.6, ease: 'power2.out',
+      snap: { textContent: 1 },
+      onUpdate() { el.textContent = Math.round(+el.textContent); }
+    })
+  });
+});
+
+/* ---------- bento reveals（每個 grid 內做 stagger）---------- */
+gsap.utils.toArray('.bento').forEach(grid => {
+  const tiles = grid.querySelectorAll(':scope > .reveal');
+  if (!tiles.length) return;
+  gsap.fromTo(tiles, { y: 40, opacity: 0, scale: .97 }, {
+    y: 0, opacity: 1, scale: 1, duration: .8, ease: 'power3.out', stagger: .08,
+    scrollTrigger: { trigger: grid, start: 'top 86%', once: true }
+  });
+});
+/* 非 bento 的 reveal（標題等） */
+gsap.utils.toArray('.reveal').forEach(el => {
+  if (el.closest('.bento') && el.parentElement.classList.contains('bento')) return;
+  if (el.parentElement.classList.contains('bento')) return;
+  gsap.fromTo(el, { y: 34, opacity: 0 }, {
+    y: 0, opacity: 1, duration: .8, ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+  });
+});
+
+/* ---------- timeline draw ---------- */
+gsap.to('.tl-fill', {
+  scaleY: 1, ease: 'none',
+  scrollTrigger: { trigger: '.tl', start: 'top 75%', end: 'bottom 55%', scrub: .5 }
+});
+
+/* ---------- media tile tilt ---------- */
+if (!reduced && matchMedia('(pointer:fine)').matches) {
+  document.querySelectorAll('.p-media').forEach(card => {
+    const rx = gsap.quickTo(card, 'rotationX', { duration: .5, ease: 'power3' });
+    const ry = gsap.quickTo(card, 'rotationY', { duration: .5, ease: 'power3' });
+    gsap.set(card, { transformPerspective: 1000 });
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      ry(((e.clientX - r.left) / r.width - .5) * 4);
+      rx(-((e.clientY - r.top) / r.height - .5) * 3);
+    });
+    card.addEventListener('mouseleave', () => { rx(0); ry(0); });
+  });
+}
+
+/* ---------- gallery（縮圖切換主圖） ---------- */
+document.querySelectorAll('[data-gallery]').forEach(g => {
+  const main = g.querySelector('.main-shot img');
+  const cap = g.querySelector('.main-shot .cap');
+  g.querySelectorAll('.thumbs button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.classList.contains('on')) return;
+      g.querySelectorAll('.thumbs button').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      gsap.to(main, { opacity: 0, scale: 1.02, duration: .18, ease: 'power1.in', onComplete() {
+        main.src = btn.dataset.src;
+        if (cap) cap.textContent = btn.dataset.cap || '';
+        gsap.to(main, { opacity: 1, scale: 1, duration: .35, ease: 'power2.out' });
+      }});
+    });
+  });
+});
+
+/* ---------- lightbox ---------- */
+const lb = document.getElementById('lb');
+const lbImg = lb.querySelector('img');
+const lbCap = lb.querySelector('.lb-cap');
+document.querySelectorAll('.main-shot').forEach(ms => {
+  ms.addEventListener('click', () => {
+    const img = ms.querySelector('img');
+    const cap = ms.querySelector('.cap');
+    lbImg.src = img.src;
+    lbCap.textContent = cap ? cap.textContent : '';
+    lb.style.display = 'flex';
+    gsap.fromTo(lb, { opacity: 0 }, { opacity: 1, duration: .25 });
+    gsap.fromTo(lbImg, { scale: .92 }, { scale: 1, duration: .35, ease: 'power2.out' });
+  });
+});
+lb.addEventListener('click', () => {
+  gsap.to(lb, { opacity: 0, duration: .2, onComplete: () => { lb.style.display = 'none'; } });
+});
+addEventListener('keydown', e => { if (e.key === 'Escape' && lb.style.display === 'flex') lb.click(); });
+
+/* ---------- charts ---------- */
+if (window.Chart) {
+  Chart.defaults.font.family = "'Noto Sans TC','Outfit',sans-serif";
+  Chart.defaults.color = '#5b6b7c';
+}
+
+function makeBar() {
+  if (!window.Chart) return;
+  new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+      labels: ['山搜圖台\n交付時間縮短', 'AI 模型\n建置時間縮短', '估價作業\n人力成本節省', '災防 AI 模型\n預測精度'],
+      datasets: [{
+        data: [70, 80, 80, 90],
+        backgroundColor: ['#0e9aa7', '#2f80ed', '#37b6c3', '#f2a541'],
+        borderRadius: 10, borderSkipped: false, barThickness: 32
+      }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      animation: { duration: 1400, easing: 'easeOutQuart' },
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: c => ' ' + c.parsed.x + '%' } }
+      },
+      scales: {
+        x: { min: 0, max: 100, grid: { color: '#edf3f8' }, ticks: { callback: v => v + '%' } },
+        y: { grid: { display: false }, ticks: { font: { size: 12.5, weight: 600 },
+             callback(v){ return this.getLabelForValue(v).split('\n'); } } }
+      }
+    }
+  });
+}
+
+function makeRadar() {
+  if (!window.Chart) return;
+  new Chart(document.getElementById('radarChart'), {
+    type: 'radar',
+    data: {
+      labels: ['專案管理', 'AI / LLM 應用', '數據分析', 'GIS 空間分析', '溝通協調', '資料視覺化'],
+      datasets: [{
+        label: 'Jerry',
+        data: [9, 8, 8.5, 9, 9, 8.5],
+        backgroundColor: 'rgba(14,154,167,.18)',
+        borderColor: '#0e9aa7', borderWidth: 2.5,
+        pointBackgroundColor: '#fff', pointBorderColor: '#0e9aa7',
+        pointRadius: 4.5, pointHoverRadius: 7, pointBorderWidth: 2.5
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      animation: { duration: 1400, easing: 'easeOutQuart' },
+      plugins: { legend: { display: false } },
+      scales: {
+        r: {
+          min: 0, max: 10,
+          ticks: { display: false, stepSize: 2 },
+          grid: { color: '#e3ecf3' }, angleLines: { color: '#e3ecf3' },
+          pointLabels: { font: { size: 13, weight: 700 }, color: '#0f1f2e' }
+        }
+      }
+    }
+  });
+}
+
+let barDone = false, radarDone = false;
+ScrollTrigger.create({
+  trigger: '#barChart', start: 'top 88%', once: true,
+  onEnter: () => { if (!barDone) { barDone = true; makeBar(); } }
+});
+ScrollTrigger.create({
+  trigger: '#radarChart', start: 'top 88%', once: true,
+  onEnter: () => { if (!radarDone) { radarDone = true; makeRadar(); } }
+});
+addEventListener('load', () => setTimeout(() => {
+  if (!barDone && document.getElementById('barChart').getBoundingClientRect().top < innerHeight) { barDone = true; makeBar(); }
+  if (!radarDone && document.getElementById('radarChart').getBoundingClientRect().top < innerHeight) { radarDone = true; makeRadar(); }
+}, 400));
+})();
+</script>
+</body>
+</html>
